@@ -59,8 +59,8 @@ function drawChart(location, labels, actualData, plannedData) {
 init();
 
 async function init() {
-  const actual = await loadCSV("data/Actually/Phase2/P2DailyHours.csv");
-  const planned = await loadCSV("data/Planned/Phase2/P2DailyHours.csv");
+  const actual = await loadCSV("./data/Actually/Phase2/AP2DailyHours.csv");
+  const planned = await loadCSV("./data/Planned/Phase2/PP2DailyHours.csv");
 
   drawChart("lineChartDailyP1", actual.labels, actual.data, planned.data);
 }
