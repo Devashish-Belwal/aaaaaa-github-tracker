@@ -59,8 +59,20 @@ function drawChart(location, labels, actualData, plannedData) {
 init();
 
 async function init() {
-  const actual = await loadCSV("./data/Actually/Phase2/AP2DailyHours.csv");
-  const planned = await loadCSV("./data/Planned/Phase2/PP2DailyHours.csv");
+  const AP1DailyHours = await loadCSV("./data/Actually/Phase2/AP1DailyHours.csv");
+  const AP1DailyHoursCumulative = await loadCSV("./data/Planned/Phase2/AP1DailyHoursCumulative.csv");
+  const AP2DailyHours = await loadCSV("./data/Planned/Phase2/AP2DailyHours.csv");
+  const AP2DailyHoursCumlative = await loadCSV("./data/Planned/Phase2/AP2DailyHoursCumlative.csv");
+  const AP2WeeklyHours = await loadCSV("./data/Planned/Phase2/AP2WeeklyHours.csv");
+  const AP2WeeklyHoursCumulative = await loadCSV("./data/Planned/Phase2/AP2WeeklyHoursCumulative.csv");
+  const PP1DailyHours = await loadCSV("./data/Planned/Phase2/PP1DailyHours.csv");
+  const PP1DailyHoursCumlative = await loadCSV("./data/Planned/Phase2/PP1DailyHoursCumlative.csv");
+  const PP2DailyHours = await loadCSV("./data/Planned/Phase2/PP2DailyHours.csv");
+  const PP2DailyHoursCumlative = await loadCSV("./data/Planned/Phase2/PP2DailyHoursCumlative.csv");
+  const PP2WeeklyHours = await loadCSV("./data/Planned/Phase2/PP2WeeklyHours.csv");
+  const PP2WeeklyHoursCumulative = await loadCSV("./data/Planned/Phase2/PP2WeeklyHoursCumulative.csv");
+
+
 
   drawChart("lineChartDailyP1", actual.labels, actual.data, planned.data);
 }
