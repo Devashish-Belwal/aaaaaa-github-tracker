@@ -56,7 +56,7 @@ function drawChartP1(location, labels, actualData, plannedData) {
   });
 }
 
-function drawChartP2(location, labels, actualData, plannedData) {
+function drawChartP2Daily(location, labels, actualData, plannedData) {
   const ctx = document.getElementById(location).getContext("2d");
   
   new Chart(ctx, {
@@ -97,6 +97,47 @@ function drawChartP2(location, labels, actualData, plannedData) {
   });
 }
 
+function drawChartP2Weekly(location, labels, actualData, plannedData) {
+  const ctx = document.getElementById(location).getContext("2d");
+  
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Actual Hours",
+          data: actualData,
+          borderColor: "rgb(54, 162, 235)",
+          backgroundColor: "rgba(54, 162, 235, 0.1)",
+          borderWidth: 2,
+          tension: 0.3
+        },
+        {
+          label: "Planned Hours",
+          data: plannedData,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.1)",
+          borderWidth: 2,
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          min: 0,
+          max: 50,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      }
+    }
+  });
+}
+
 function drawChartCumulativeP1(location, labels, actualData, plannedData) {
   const ctx = document.getElementById(location).getContext("2d");
   
@@ -128,7 +169,7 @@ function drawChartCumulativeP1(location, labels, actualData, plannedData) {
       scales: {
         y: {
           min: 0,
-          max: 144,
+          max: 150,
           ticks: {
             stepSize: 1
           }
@@ -284,7 +325,14 @@ async function init() {
 
 
   drawChartP1("lineChartDailyP1", PP1DailyHours.labels, AP1DailyHours.data, PP1DailyHours.data);
+
   drawChartCumulativeP1("lineChartDailyCumulativeP1", PP1DailyHoursCumulative.labels, AP1DailyHoursCumulative.data, PP1DailyHoursCumulative.data);
-  drawChartP2("lineChartDailyP2", PP2DailyHours.labels, AP2DailyHours.data, PP2DailyHours.data);
+
+  drawChartP2Daily("lineChartDailyP2", PP2DailyHours.labels, AP2DailyHours.data, PP2DailyHours.data);
+
   drawChartCumulativeP2("lineChartDailyCumulativeP2", PP2DailyHoursCumulative.labels, AP2DailyHoursCumulative.data, PP2DailyHoursCumulative.data);
+
+  drawChartP2Weekly("weeklyGraphP2Canvas", PP2WeeklyHours.labels, AP2WeeklyHours.data, PP2WeeklyHours.data);
+
+  drawChartCumulativeP2("weeklyGraphP2CumulativeCanvas", PP2WeeklyHoursCumulative.labels, AP2WeeklyHoursCumulative.data, PP2WeeklyHoursCumulative.data);
 }
